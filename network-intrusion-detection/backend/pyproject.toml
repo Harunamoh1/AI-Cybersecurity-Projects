@@ -1,0 +1,29 @@
+[project]
+name = "sentinelai"
+version = "1.0.0"
+description = "Explainable machine-learning network intrusion detection (CIC-IDS2017)"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = ["ignore::FutureWarning", "ignore::DeprecationWarning", "ignore::UserWarning"]
+markers = ["slow: tests that take more than a few seconds"]
+
+[tool.ruff]
+line-length = 125
+target-version = "py311"
+extend-exclude = [".venv", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101", "E501", "B008", "B905", "E702"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S"]
+"scripts/*" = ["S"]
+
+[tool.coverage.run]
+source = ["sentinelai"]
+omit = ["sentinelai/training/train.py", "sentinelai/training/crossdataset.py", "sentinelai/data/loading.py"]

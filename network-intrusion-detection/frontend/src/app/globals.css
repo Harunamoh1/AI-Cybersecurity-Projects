@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+ * SentinelAI design tokens — a dark SOC console.
+ * Neutral graphite surfaces and hairline borders; colour is reserved for data:
+ *  - attack classes use the validated categorical dark steps (fixed order,
+ *    checked with the palette validator against --surface: all checks pass);
+ *  - severity uses the fixed status palette and always ships with a text label.
+ */
+:root {
+  color-scheme: dark;
+  --bg: #0c0e11;
+  --surface: #14171c;
+  --surface-2: #191d23;
+  --surface-3: #20252c;
+  --line: #232830;
+  --line-strong: #323944;
+  --text: #eceef1;
+  --text-2: #a7aeb8;
+  --text-3: #6f7782;
+  --accent: #3987e5;
+
+  /* attack classes (categorical slots 1-7, dark steps); benign is neutral */
+  --c-benign: #5d6670;
+  --c-dos: #3987e5;
+  --c-ddos: #d95926;
+  --c-portscan: #199e70;
+  --c-bruteforce: #c98500;
+  --c-webattack: #d55181;
+  --c-bot: #0ca30c;
+  --c-infiltration: #9085e9;
+
+  /* status (severity) */
+  --sev-critical: #d03b3b;
+  --sev-high: #ec835a;
+  --sev-medium: #fab219;
+  --sev-low: #7e8a97;
+
+  --grid: #22272e;
+  --axis: #3a414b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-accent: var(--accent);
+  --color-critical: var(--sev-critical);
+  --color-high: var(--sev-high);
+  --color-medium: var(--sev-medium);
+  --color-low: var(--sev-low);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Recharts: recessive chrome */
+.recharts-cartesian-grid line {
+  stroke: var(--grid);
+}
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: var(--axis);
+}
+.recharts-text {
+  fill: var(--text-3);
+  font-size: 11px;
+}
+.recharts-tooltip-cursor {
+  fill: color-mix(in srgb, var(--text) 5%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

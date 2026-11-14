@@ -1,0 +1,4 @@
+-r requirements.txt
+# Training pipeline: parquet cache + evaluation figures
+pyarrow==26.0.1
+matplotlib==3.11.2

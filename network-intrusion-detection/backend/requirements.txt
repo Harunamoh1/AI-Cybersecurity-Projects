@@ -1,0 +1,12 @@
+# Runtime: API + inference + SHAP explanations.
+# Pinned exactly; xgboost in particular must match the version that wrote the model.
+fastapi==0.162.7
+uvicorn==0.54.0
+pydantic==2.13.5
+python-multipart==0.0.33
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.1
+xgboost==3.4.1
+shap==0.54.1
