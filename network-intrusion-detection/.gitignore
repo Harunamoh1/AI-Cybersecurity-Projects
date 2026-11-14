@@ -1,0 +1,13 @@
+# raw/processed datasets are downloaded (checksum-verified) by the training pipeline
+backend/data/
+backend/.venv/
+backend/*.db
+backend/*.db-*
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+.env
+.env.*
+!.env.example
