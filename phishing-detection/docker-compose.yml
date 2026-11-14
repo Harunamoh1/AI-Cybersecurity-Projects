@@ -1,0 +1,32 @@
+# PhishLens: `docker compose up --build`, then open http://localhost:3000
+services:
+  backend:
+    build: ./backend
+    environment:
+      PHISHLENS_CORS_ORIGINS: http://localhost:3000
+      PHISHLENS_RATE_LIMIT: "120"
+    volumes:
+      - scan-history:/data
+    # Not published to the host: the frontend proxies /api/* to it on the
+    # internal network. Uncomment to call the API directly (Swagger at /docs).
+    # ports:
+    #   - "8000:8000"
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    environment:
+      BACKEND_URL: http://backend:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+
+volumes:
+  scan-history:

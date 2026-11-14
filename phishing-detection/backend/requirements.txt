@@ -1,0 +1,11 @@
+# Runtime (API + inference). scikit-learn is pinned exactly: the persisted
+# model must be loaded with the version that produced it.
+fastapi==0.162.7
+uvicorn==0.54.0
+pydantic==2.13.5
+scikit-learn==1.9.1
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+joblib==1.6.0
+tldextract==5.4.0

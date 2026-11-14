@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/*
+ * PhishLens design tokens. Dark-first console aesthetic: near-black surfaces,
+ * hairline borders, white primary actions, and colour reserved for risk state.
+ * Risk/series colours are the validated dark-surface steps of the dataviz palette.
+ */
+:root {
+  color-scheme: dark;
+  --bg: #080a0d;
+  --surface: #0f1318;
+  --surface-2: #141a21;
+  --surface-3: #1a212a;
+  --line: #1d252f;
+  --line-strong: #2b3542;
+  --text: #e8ecf1;
+  --text-2: #9ba5b3;
+  --text-3: #66717f;
+  --focus: #3987e5;
+
+  --risk-low: #199e70;
+  --risk-medium: #c98500;
+  --risk-high: #d95926;
+  --risk-critical: #e66767;
+
+  --series-legit: #3987e5;
+  --series-phish: #e66767;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-focus: var(--focus);
+  --color-low: var(--risk-low);
+  --color-medium: var(--risk-medium);
+  --color-high: var(--risk-high);
+  --color-critical: var(--risk-critical);
+  --color-legit: var(--series-legit);
+  --color-phish: var(--series-phish);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+/* faint engineering grid behind the workspace */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 420px);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgb(57 135 229 / 0.35);
+}
+
+.recharts-wrapper *:focus {
+  outline: none;
+}
+
+@keyframes scan-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+.animate-sweep {
+  animation: scan-sweep 1.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sweep { animation: none; }
+}
