@@ -1,0 +1,22 @@
+{
+  "mixed_traffic.csv": {
+    "title": "Mixed traffic (all attack classes)",
+    "description": "3,000 benign flows plus up to 150 flows of every attack class, CIC-IDS2017 test split."
+  },
+  "ddos_friday_afternoon.csv": {
+    "title": "DDoS \u2014 Friday afternoon",
+    "description": "LOIC HTTP flood mixed with concurrent benign traffic."
+  },
+  "web_attacks_thursday.csv": {
+    "title": "Web attacks \u2014 Thursday morning",
+    "description": "Brute force, XSS and SQL injection against a web application."
+  },
+  "benign_monday.csv": {
+    "title": "Benign baseline \u2014 Monday",
+    "description": "Attack-free working-day traffic; any alert here is a false positive."
+  },
+  "cicids2018_cross_dataset.csv": {
+    "title": "CSE-CIC-IDS2018 (different network)",
+    "description": "2018 flows in the 2018 column naming. Expect a distribution-shift warning and much lower accuracy: the model was trained on 2017 traffic only."
+  }
+}
